@@ -1,18 +1,52 @@
-<a href="/">
-    <h1>LOGO</h1>
-</a>
 
-<form method="GET"  action="{% url 'home' %}">
-    <input type="text" class="text" name="q" placeholder="Search">
-</form>
+<style>
+    .nav-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
 
-{% if request.user.is_authenticated %}
-<p>Hello {{request.user}}</p>
-<a href={% url 'logout' %}>Logout</a>
+    }
+    .search{
+        margin-top: 30px;
+    }
 
-{% else %}
-<a href={% url 'login' %}>Login</a>
+    .top-right{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 
-{% endif %}
+    .auth{
+        margin-top: 30px;
+    }
+
+    .name{
+        margin-top: 30px;
+    }
+
+</style>
+
+<div class='nav-container'>
+
+    <div>
+        <a href="/">
+            <h1>LOGO</h1>
+        </a>
+    </div>
+    
+    <div class='search'>
+        <form method="GET"  action="{% url 'home' %}">
+            <input type="text" class="text" name="q" placeholder="Search">
+        </form>
+    </div>
+    
+    <div class="top-right">
+        {% if request.user.is_authenticated %}
+            <h3 class="name">Hello {{request.user}}</h3>
+            <a href={% url 'logout' %} class='auth'>Logout</a>
+        {% else %}
+            <a href={% url 'login' %} class='auth'>Login</a>
+        {% endif %}
+    </div>
+    
+</div>
 
 <hr>
