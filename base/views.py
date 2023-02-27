@@ -85,7 +85,14 @@ def home(request):
 
     room_count = rooms.count()
 
-    room_messages = Message.objects.all()
+    room_messages = Message.objects.filter( 
+
+        Q(user__username__icontains=q) | 
+        Q(room__topic__name__icontains=q) | 
+        Q(room__name__icontains=q) | 
+        Q(body__icontains=q) 
+        
+        )
 
     context = {
         'rooms': rooms,
